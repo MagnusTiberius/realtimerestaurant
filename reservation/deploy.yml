@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtr-reservation
+  labels:
+    app: rtr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtr
+  template:
+    metadata:
+      labels:
+        app: rtr
+    spec:
+      containers:
+      - name: rtrreservation
+        image: us.gcr.io/weatherservice-195512/rtrreservation
+        ports:
+        - containerPort: 8094

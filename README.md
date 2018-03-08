@@ -3,19 +3,19 @@ A futuristic  restaurant connected to the cloud, IoT capable.
 
 [![CircleCI](https://circleci.com/gh/MagnusTiberius/realtimerestaurant.svg?style=svg)](https://circleci.com/gh/MagnusTiberius/realtimerestaurant)
 
-###### Enrolment
+## Enrolment
 
 Perform enrolment activities for restaurant admins.
 
-###### Reservation
+## Reservation
 
 Users perform reservation activities.
 
-###### Signage
+## Signage
 
 Signs that target display devices such as IoT devices behind Tv/Monitors/Smart TV
 
-###### Use Cases
+## Use Cases
 
 **Restaurant**
 1. Front Door/Checkin
