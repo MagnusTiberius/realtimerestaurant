@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtr-signage
+  labels:
+    app: rtr-signage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtr-signage
+  template:
+    metadata:
+      labels:
+        app: rtr-signage
+    spec:
+      containers:
+      - name: rtrsignage
+        image: us.gcr.io/weatherservice-195512/rtrsignage
+        ports:
+        - containerPort: 8096

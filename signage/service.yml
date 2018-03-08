@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rtr-signage-svc
+spec:
+  selector:
+    app: rtr-signage
+  ports:
+  - protocol: TCP
+    port: 8096
+    targetPort: 8096
