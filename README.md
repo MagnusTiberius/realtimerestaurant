@@ -15,7 +15,13 @@ Users perform reservation activities.
 
 Signs that target display devices such as IoT devices behind Tv/Monitors/Smart TV
 
-## Use Cases
+## Checkin And Checkout
+
+For restaurants, the process is checking in, ordering, checking out.
+
+For food courts and food carts, the process is ordering and checking out. 
+
+## Categories
 
 **Restaurant**
 1. Front Door/Checkin
