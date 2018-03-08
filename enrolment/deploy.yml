@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtr-enrolment
+  labels:
+    app: rtr-enrolment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rtr-enrolment
+  template:
+    metadata:
+      labels:
+        app: rtr-enrolment
+    spec:
+      containers:
+      - name: rtrenrolment
+        image: us.gcr.io/weatherservice-195512/rtrenrolment
+        ports:
+        - containerPort: 8094

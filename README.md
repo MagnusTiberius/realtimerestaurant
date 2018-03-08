@@ -19,7 +19,7 @@ Signs that target display devices such as IoT devices behind Tv/Monitors/Smart T
 
 For restaurants, the process is checking in, ordering, checking out.
 
-For food courts and food carts, the process is ordering and checking out. 
+For food courts and food carts, the process is ordering and checking out.
 
 ## Categories
 

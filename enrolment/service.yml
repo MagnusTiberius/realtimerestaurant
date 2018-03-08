@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rtr-enrolment-svc
+spec:
+  selector:
+    app: rtr-enrolment
+  ports:
+  - protocol: TCP
+    port: 8095
+    targetPort: 8095
