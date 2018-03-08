@@ -31,9 +31,9 @@ jobs:
 
       # specify any bash command here prefixed with `run: `
       - run: echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
-      - run: sudo apt-get install lsb-core
       - run:
           command: |
+            sudo apt-get install lsb-core
             lsb_release -c -s
             export CLOUD_SDK_REPO=$(lsb_release -c -s)
             echo $CLOUD_SDK_REPO
@@ -48,15 +48,19 @@ jobs:
       - run: which gcloud
 
       #- run: sudo gcloud --quiet components update
-      - run: sudo gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-      - run: sudo gcloud config set project weatherservice-195512
-      - run: sudo gcloud config set compute/zone us-central1-a
-      - run: sudo gcloud auth list
+      - run:
+          command: |
+            sudo gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+            sudo gcloud config set project weatherservice-195512
+            sudo gcloud config set compute/zone us-central1-a
+            sudo gcloud auth list
 
-      - run: go version
-      - run: go get -v -t -d github.com/rs/cors
-      - run: go get -v -t -d github.com/gorilla/handlers
-      - run: go get -v -t -d github.com/gorilla/mux
+      - run:
+          command: |
+            go version
+            go get -v -t -d github.com/rs/cors
+            go get -v -t -d github.com/gorilla/handlers
+            go get -v -t -d github.com/gorilla/mux
       #- run: go test -v ./...
       - run:
           command: |
@@ -83,16 +87,20 @@ jobs:
       #- run: docker push  magnustiberius/weatherserviceweb
 
 
-      - run: gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-      - run: gcloud auth list
-      - run: gcloud config set account dev-854@weatherservice-195512.iam.gserviceaccount.com
-      - run: gcloud config set project weatherservice-195512
-      - run: gcloud docker -- push us.gcr.io/weatherservice-195512/rtrreservation
-      - run: gcloud docker -- push us.gcr.io/weatherservice-195512/rtrenrolment
-      - run: gcloud docker -- push us.gcr.io/weatherservice-195512/signage
-      - run: gcloud config set compute/zone us-central1-a
-      - run: gcloud container images list
-      - run: gcloud compute instances list
+      - run:
+          command: |
+            gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+            gcloud auth list
+            gcloud config set account dev-854@weatherservice-195512.iam.gserviceaccount.com
+            gcloud config set project weatherservice-195512
+            gcloud config set compute/zone us-central1-a
+      - run:
+          command: |
+            gcloud docker -- push us.gcr.io/weatherservice-195512/rtrreservation
+            gcloud docker -- push us.gcr.io/weatherservice-195512/rtrenrolment
+            gcloud docker -- push us.gcr.io/weatherservice-195512/signage
+            gcloud container images list
+            gcloud compute instances list
       #- run: gcloud container clusters create weather-cluster --num-nodes=2
       - run: gcloud container clusters get-credentials weather-cluster
       #- run: kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}"
