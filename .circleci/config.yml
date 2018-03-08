@@ -54,22 +54,27 @@ jobs:
       - run: go get -v -t -d github.com/gorilla/handlers
       - run: go get -v -t -d github.com/gorilla/mux
       #- run: go test -v ./...
-      - run: go build -v reservation/main.go
+      - run: cd reservation
+      - run: go build -v main.go
       - run: ls -la
-      - run: mv main reservation.exe
+      - run: docker build -t us.gcr.io/weatherservice-195512/rtrreservation .
+
+      - run: cd ../enrolment
+      - run: go build -v main.go
       - run: ls -la
+      - run: docker build -t us.gcr.io/weatherservice-195512/rtrenrolment .
       # docker build, login and push.
       #- run: docker build -t "magnustiberius/rtrreservation" .
       #- run: docker login -u=$DOCKER_USER -p=$DOCKER_PASS
       #- run: docker push  magnustiberius/weatherserviceweb
 
-      - run: docker build -t us.gcr.io/weatherservice-195512/rtrreservation .
 
       - run: gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
       - run: gcloud auth list
       - run: gcloud config set account dev-854@weatherservice-195512.iam.gserviceaccount.com
       - run: gcloud config set project weatherservice-195512
       - run: gcloud docker -- push us.gcr.io/weatherservice-195512/rtrreservation
+      - run: gcloud docker -- push us.gcr.io/weatherservice-195512/rtrenrolment
       - run: gcloud config set compute/zone us-central1-a
       - run: gcloud container images list
       - run: gcloud compute instances list
