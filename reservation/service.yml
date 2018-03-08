@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rtr-reservation-svc
+spec:
+  selector:
+    app: rtr-reservation
+  ports:
+  - protocol: TCP
+    port: 8094
+    targetPort: 8094

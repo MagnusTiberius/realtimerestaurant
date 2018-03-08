@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: rtr-reservation
   labels:
-    app: rtr
+    app: rtr-reservation
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rtr
+      app: rtr-reservation
   template:
     metadata:
       labels:
-        app: rtr
+        app: rtr-reservation
     spec:
       containers:
       - name: rtrreservation
