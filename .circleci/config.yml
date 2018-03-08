@@ -55,12 +55,14 @@ jobs:
       - run: go get -v -t -d github.com/gorilla/mux
       #- run: go test -v ./...
       - run: cd reservation
-      - run: go build -v main.go
+      - run: ls -la
+      - run: go build
       - run: ls -la
       - run: docker build -t us.gcr.io/weatherservice-195512/rtrreservation .
 
       - run: cd ../enrolment
-      - run: go build -v main.go
+      - run: ls -la
+      - run: go build
       - run: ls -la
       - run: docker build -t us.gcr.io/weatherservice-195512/rtrenrolment .
       # docker build, login and push.
