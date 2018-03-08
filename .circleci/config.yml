@@ -37,10 +37,13 @@ jobs:
             lsb_release -c -s
             export CLOUD_SDK_REPO=$(lsb_release -c -s)
             echo $CLOUD_SDK_REPO
-      - run: echo "deb http://packages.cloud.google.com/apt cloud-sdk-stretch main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-      - run: cat /etc/apt/sources.list.d/google-cloud-sdk.list
-      - run: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-      - run: sudo apt-get update && sudo apt-get install google-cloud-sdk kubectl
+            echo "deb http://packages.cloud.google.com/apt cloud-sdk-${CLOUD_SDK_REPO} main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+            cat /etc/apt/sources.list.d/google-cloud-sdk.list
+            curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+      - run:
+          command: |
+            sudo apt-get update
+            sudo apt-get install google-cloud-sdk kubectl
 
       - run: which gcloud
 
