@@ -1,6 +1,6 @@
 FROM golang
 
-ADD ./reservation.exe /usr/local/bin/
-ENTRYPOINT /usr/local/bin/reservation.exe
+ADD ./reservation /usr/local/bin/
+ENTRYPOINT /usr/local/bin/reservation
 
 EXPOSE  8094
