@@ -46,7 +46,7 @@ func main() {
 
 	handler := c.Handler(r)
 
-	http.ListenAndServe(":8094", handler)
+	http.ListenAndServe(":8096", handler)
 }
 
 func JsonResponseWrite(w http.ResponseWriter, message interface{}, statusCode int) {

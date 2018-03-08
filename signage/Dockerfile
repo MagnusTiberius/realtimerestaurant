@@ -1,6 +1,6 @@
 FROM golang
 
-ADD ./enrolment.exe /usr/local/bin/
-ENTRYPOINT /usr/local/bin/enrolment.exe
+ADD ./signage /usr/local/bin/
+ENTRYPOINT /usr/local/bin/signage
 
-EXPOSE  8095
+EXPOSE  8096
