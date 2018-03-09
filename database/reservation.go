@@ -1,4 +1,4 @@
-package tables
+package database
 
 import (
 	"github.com/aws/aws-sdk-go/aws"

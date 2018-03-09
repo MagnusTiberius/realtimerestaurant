@@ -64,6 +64,7 @@ jobs:
             go get -v -t -d github.com/aws/aws-sdk-go/aws
             go get -v -t -d github.com/aws/aws-sdk-go/service/dynamodb
             go get -v -t -d github.com/guregu/dynamo
+            go get -v -t -d github.com/MagnusTiberius/realtimerestaurant/tables
       #- run: go test -v ./...
       - run:
           command: |
