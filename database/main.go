@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/MagnusTiberius/realtimerestaurant/database/tables"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
@@ -23,7 +23,7 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", IndexHandler)
-	r.HandleFunc("/database/create/reservation", CreateReservationTable).Methods("GET")
+	r.HandleFunc("/database/create/reservation", createReservationTable).Methods("GET")
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"http://localhost:8088", "http://35.226.247.163:8088/"},
@@ -47,18 +47,58 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	JsonResponseWrite(w, response, 200)
 }
 
-func CreateReservationTable(w http.ResponseWriter, r *http.Request) {
-	awsconfig := &aws.Config{
-		Region: aws.String("us-central1-a"),
+//createReservationTable func
+func createReservationTable(w http.ResponseWriter, r *http.Request) {
+
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("us-central1-a")},
+	)
+
+	svc := dynamodb.New(sess)
+
+	input := &dynamodb.CreateTableInput{
+		AttributeDefinitions: []*dynamodb.AttributeDefinition{
+			{
+				AttributeName: aws.String("ID"),
+				AttributeType: aws.String("S"),
+			},
+			{
+				AttributeName: aws.String("Code"),
+				AttributeType: aws.String("S"),
+			},
+		},
+		KeySchema: []*dynamodb.KeySchemaElement{
+			{
+				AttributeName: aws.String("ID"),
+				KeyType:       aws.String("HASH"),
+			},
+			{
+				AttributeName: aws.String("Code"),
+				KeyType:       aws.String("RANGE"),
+			},
+		},
+		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
+			ReadCapacityUnits:  aws.Int64(10),
+			WriteCapacityUnits: aws.Int64(10),
+		},
+		TableName: aws.String("Reservation"),
 	}
-	svc := dynamodb.New(nil, awsconfig)
-	_, err := tables.CreateReservationTable(svc)
+
+	_, err = svc.CreateTable(input)
+	//awsconfig := &aws.Config{
+	//	Region: aws.String("us-central1-a"),
+	//}
+	//svc := dynamodb.New(nil, awsconfig)
+	//_, err := tables.CreateReservationTable(svc)
 
 	if err != nil {
 		log.Println(err.Error())
 	}
 
 	log.Println(CREATING)
+	response := ResponseMessage{Message: "Reservation table created", Code: 200}
+	JsonResponseWrite(w, response, 200)
+
 }
 
 func JsonResponseWrite(w http.ResponseWriter, message interface{}, statusCode int) {
