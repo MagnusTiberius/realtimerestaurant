@@ -40,3 +40,8 @@ For food courts and food carts, the process is ordering and checking out.
 2. Order counter / Menu screen
 3. Payment
 4. Food checkout
+
+## IoT Devices
+
+1. Particle - https://www.particle.io/
+2. Raspberry Pi

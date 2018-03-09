@@ -61,6 +61,9 @@ jobs:
             go get -v -t -d github.com/rs/cors
             go get -v -t -d github.com/gorilla/handlers
             go get -v -t -d github.com/gorilla/mux
+            go get -v -t -d github.com/aws/aws-sdk-go/aws
+            go get -v -t -d github.com/aws/aws-sdk-go/service/dynamodb
+            go get -v -t -d github.com/guregu/dynamo
       #- run: go test -v ./...
       - run:
           command: |
@@ -96,9 +99,9 @@ jobs:
             gcloud config set compute/zone us-central1-a
       - run:
           command: |
-            gcloud docker -- push us.gcr.io/weatherservice-195512/rtrreservation
-            gcloud docker -- push us.gcr.io/weatherservice-195512/rtrenrolment
-            gcloud docker -- push us.gcr.io/weatherservice-195512/signage
+            #gcloud docker -- push us.gcr.io/weatherservice-195512/rtrreservation
+            #gcloud docker -- push us.gcr.io/weatherservice-195512/rtrenrolment
+            #gcloud docker -- push us.gcr.io/weatherservice-195512/signage
             gcloud container images list
             gcloud compute instances list
       #- run: gcloud container clusters create weather-cluster --num-nodes=2
