@@ -1,4 +1,4 @@
-package reservation
+package tables
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
