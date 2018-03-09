@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 
-	"github.com/MagnusTiberius/realtimerestaurant/tables"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
