@@ -9,3 +9,4 @@ spec:
   - protocol: TCP
     port: 8095
     targetPort: 8095
+  type: LoadBalancer
