@@ -65,6 +65,10 @@ jobs:
             go get -v -t -d github.com/aws/aws-sdk-go/service/dynamodb
             go get -v -t -d github.com/guregu/dynamo
             go get -v -t -d github.com/aws/aws-sdk-go/aws/session
+            go get -v -t -d github.com/dgrijalva/jwt-go
+            go get -v -t -d github.com/gorilla/context
+            go get -v -t -d github.com/mitchellh/mapstructure
+            go get -v -t -d github.com/auth0-community/auth0
             go get -v -t -d github.com/MagnusTiberius/realtimerestaurant/database/tables
       #- run: go test -v ./...
 
@@ -113,7 +117,7 @@ jobs:
 
       - run: ls -la
 
-      
+
       # docker build, login and push.
       #- run: docker build -t "magnustiberius/rtrreservation" .
       #- run: docker login -u=$DOCKER_USER -p=$DOCKER_PASS
